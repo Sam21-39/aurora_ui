@@ -43,14 +43,15 @@ class NativeGlassStrategy implements AuroraRenderStrategy {
           boxShadow: shadows,
         ),
         child: Stack(
-          fit: StackFit.expand,
           children: <Widget>[
-            UiKitView(
-              viewType: _viewType,
-              creationParams: <String, Object>{
-                'style': material.uiBlurEffectStyle,
-              },
-              creationParamsCodec: const StandardMessageCodec(),
+            Positioned.fill(
+              child: UiKitView(
+                viewType: _viewType,
+                creationParams: <String, Object>{
+                  'style': material.uiBlurEffectStyle,
+                },
+                creationParamsCodec: const StandardMessageCodec(),
+              ),
             ),
             DecoratedBox(
               decoration: BoxDecoration(
