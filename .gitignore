@@ -1,0 +1,51 @@
+# --- OS / Editor ---
+.DS_Store
+*.swp
+*.swo
+*.iml
+.idea/
+.vscode/
+
+# --- Dart / Flutter tooling ---
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub/
+.pub-cache/
+/build/
+coverage/
+doc/api/
+
+# Library packages should not commit lockfile.
+pubspec.lock
+
+# --- Optional local SDK manager dirs ---
+.fvm/
+
+# --- iOS / CocoaPods (all nested projects, including example/) ---
+**/Pods/
+**/.symlinks/
+**/Flutter/ephemeral/
+**/Flutter/Flutter.framework
+**/Flutter/Flutter.podspec
+**/Flutter/Generated.xcconfig
+**/Flutter/flutter_export_environment.sh
+**/Flutter/app.flx
+**/Flutter/app.zip
+**/Flutter/flutter_assets/
+
+# --- Android / Gradle (all nested projects, including example/) ---
+**/.gradle/
+**/local.properties
+**/.cxx/
+**/captures/
+
+# Ignore example platform folders entirely.
+/example/android/
+/example/ios/
+/example/web/
+/example/windows/
+/example/macos/
+/example/linux/
+/example/test/

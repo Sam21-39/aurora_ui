@@ -1,0 +1,17 @@
+**/Pods/
+**/.symlinks/
+**/DerivedData/
+
+Flutter/ephemeral/
+Flutter/App.framework
+Flutter/Flutter.framework
+Flutter/Flutter.podspec
+Flutter/Generated.xcconfig
+Flutter/flutter_export_environment.sh
+
+# Xcode user data
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.pbxuser
+xcuserdata/

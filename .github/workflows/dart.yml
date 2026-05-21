@@ -1,0 +1,79 @@
+name: Dart CI
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main, dev]
+
+jobs:
+  test:
+    name: Analyze & Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: stable
+          channel: stable
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      - name: Verify formatting
+        run: dart format --output=none --set-exit-if-changed .
+
+      - name: Analyze
+        run: dart analyze --fatal-infos
+
+      - name: Run tests
+        run: flutter test --coverage
+
+      - name: Upload coverage
+        uses: codecov/codecov-action@v3
+        with:
+          files: coverage/lcov.info
+
+  ios-build:
+    name: Build iOS example
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: stable
+
+      - name: Build iOS example (no codesign)
+        run: |
+          cd example
+          flutter pub get
+          flutter build ios --no-codesign
+
+  android-build:
+    name: Build Android example
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: stable
+
+      - name: Build Android example
+        run: |
+          cd example
+          flutter pub get
+          flutter build apk --debug
+
+  pana-score:
+    name: pub.dev score (pana)
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dart-lang/setup-dart@v1
+      - run: dart pub global activate pana
+      - run: pana --no-warning .
