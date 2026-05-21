@@ -16,8 +16,8 @@ jobs:
 
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: stable
           channel: stable
+          cache: true
 
       - name: Install dependencies
         run: flutter pub get
@@ -44,7 +44,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: stable
+          channel: stable
+          cache: true
 
       - name: Build iOS example (no codesign)
         run: |
@@ -60,7 +61,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: subosito/flutter-action@v2
         with:
-          flutter-version: stable
+          channel: stable
+          cache: true
 
       - name: Build Android example
         run: |
